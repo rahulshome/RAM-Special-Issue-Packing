@@ -1,0 +1,326 @@
+\newcommand{\danh}[2][1=]{\todo[linecolor=blue,
+			backgroundcolor=blue!5,bordercolor=black,#1]{DH:#2}}
+\newcommand{\kb}[2][1=]{\todo[linecolor=green,
+			backgroundcolor=green!5,bordercolor=black,#1]{KB:#2}}
+\newcommand{\ks}[2][1=]{\todo[linecolor=red,
+			backgroundcolor=red!5,bordercolor=black,#1]{KS:#2}}
+\newcommand{\rs}[2][1=]{\todo[linecolor=orange,
+			backgroundcolor=orange!10,bordercolor=black,#1]{RS:#2}}
+\newcommand{\jy}[2][1=]{\todo[linecolor=black,
+			backgroundcolor=black!5,bordercolor=black,#1]{JJ:#2}}
+
+%%% Mathematical Definitions
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\integers}{\mathbb{Z}}
+
+%%% Definitions for Workspace, Objects, Manipulator
+\newcommand{\Wspace}{\mathcal{W}}
+\newcommand{\Objects}{\mathcal{O}}
+\newcommand{\Manip}{\mathcal{M}}
+\newcommand{\nobj}{k}
+
+%% Definitions for Object stuff
+\newcommand{\Pspace}{\mathcal{P}}
+\newcommand{\Pstable}{\mathcal{P}^s}
+\newcommand{\pose}{p}
+\newcommand{\GeomObj}{\mathcal{WO}}
+\newcommand{\Arrange}{\mathcal{A}}
+\newcommand{\Pumped}{\mathcal{A^P}}
+\newcommand{\pumpedarr}{\alpha^{\mathcal{P}}}
+
+%% Definitions for Manipulator stuff
+\newcommand{\Qspace}{\mathcal{Q}}
+\newcommand{\GeomManip}{\mathcal{WM}}
+
+%% Definitions for problem and state space
+\newcommand{\Tspace}{\mathbb{T}} 
+\newcommand{\Xspace}{\mathbb{X}}
+\newcommand{\paths}{\Pi}
+
+%% Manipulation roadmap definition
+\newcommand{\roadmap}{\mathcal{R}}
+\newcommand{\graph}{\mathcal{G}}
+\newcommand{\nodes}{\mathcal{V}}
+\newcommand{\node}{{v}}
+\newcommand{\edges}{\mathcal{E}}
+\newcommand{\edge}{{e}}
+\newcommand{\prmstar}{{\tt PRM$^*$}}
+
+\newcommand{\rpg}{${\tt RPG}$}
+
+\newcommand{\local}{\mathcal{L}}
+
+\newcommand{\prm}{{\tt PRM}}
+\newcommand{\kprmstar}{{\tt k-PRM$^*$}}
+\newcommand{\rrt}{{\tt RRT}}
+\newcommand{\rrtdrain}{{\tt RRT-Drain}}
+\newcommand{\rrg}{{\tt RRG}}
+\newcommand{\est}{{\tt EST}}
+\newcommand{\rrtstar}{{\tt RRT$^*$}}
+\newcommand{\srrt}{{\tt RDG}}
+\newcommand{\bvp}{{\tt BVP}}
+\newcommand{\rdg}{{\tt RDG}}
+\newcommand{\lrg}{{\tt LRG}}
+\newcommand{\alg}{{\tt ALG}}
+\newcommand{\upump}{{\tt UPUMP}}
+\newcommand{\prxpump}{{\tt RPG}}
+\newcommand{\fixed}{{\tt Fixed}-$\alpha$-\rdg}
+\newcommand{\nrob}{k}
+\newcommand{\cons}{K}
+
+\newcommand{\frnodes}{V_f}
+\newcommand{\frnode}{v_f}
+\newcommand{\grnodes}{V_g}
+\newcommand{\grnode}{v_g}
+\newcommand{\fredges}{E_f}
+\newcommand{\fredge}{e_f}
+\newcommand{\gredges}{E_g}
+\newcommand{\gredge}{e_g}
+\newcommand{\kedges}{E_{\cons}}
+\newcommand{\kedge}{e_{\cons}}
+\newcommand{\safe}{q_s^{\mathcal{M}}}
+\newcommand{\hedges}{E_H}
+\newcommand{\hedge}{e_H}
+\newcommand{\hnodes}{V_H}
+\newcommand{\hnode}{v_H}
+\newcommand{\hgraph}{H}
+\newcommand{\nblank}{b}
+\newcommand{\config}{C}
+\newcommand{\cquery}{\mathbb{C}}
+\newcommand{\pumped}{P}
+\newcommand{\pumpedgraph}{\mathcal{G}_P}
+\newcommand{\pnodes}{V_P}
+\newcommand{\pnode}{v_P}
+\newcommand{\pedges}{E_P}
+\newcommand{\pedge}{e_P}
+\newcommand{\signs}{\Sigma}
+\newcommand{\sign}{\sigma}
+\newcommand{\gsign}{\sigma_{\pumpedgraph}}
+\newcommand{\cedges}{E_c}
+\newcommand{\constraints}{\tt c}
+
+
+\newenvironment{myitem}{\begin{list}{$\bullet$}
+{\setlength{\itemsep}{-0pt}
+\setlength{\topsep}{0pt}
+\setlength{\labelwidth}{0pt}
+%\setlength{\labelsep}{0pt}
+\setlength{\leftmargin}{10pt}
+\setlength{\parsep}{-0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\partopsep}{0pt}}}%
+{\end{list}}
+
+% \newtheorem{theorem}{Theorem}
+% \newtheorem{definition}[theorem]{Definition}
+% \newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem{corollary}[theorem]{Corollary}
+% \newtheorem{axiom}[theorem]{Axiom}
+% \newtheorem{lemma}[theorem]{Lemma}
+% \newtheorem{problem}{Problem}
+% \newtheorem{prob}[theorem]{Problem}
+% \newtheorem{conjecture}[theorem]{Conjecture}
+% \newtheorem{obj}[theorem]{Objective}
+% \newtheorem{prop}[theorem]{Property}
+% \newtheorem{schedule}[theorem]{Schedule}
+
+
+% \newtheorem{definition}{\bf Definition}
+% \newtheorem{assumption}{\bf Assumption}
+% \newtheorem{thm}{\bf Theorem}
+% \newtheorem{requirement}{\bf Requirement}
+% \newtheorem{lemmma}{\bf Lemma}
+% \newtheorem{coro}{\bf Corollary}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Nick Saving space
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Space between figure and caption
+%\setlength{\abovecaptionskip}{-2.5pt}
+%\setlength{\belowcaptionskip}{-6pt}
+%% Space between text and figs
+%\setlength{\dbltextfloatsep}{2pt plus 1.0pt minus 1.0pt}
+%\setlength{\textfloatsep}{2pt plus 1.0pt minus 1.0pt}
+%\setlength{\intextsep}{2pt plus 1.0pt minus 1.0pt}
+%% Space between equations and text
+%\setlength{\belowdisplayskip}{0pt} \setlength{\belowdisplayshortskip}{2pt}
+%\setlength{\abovedisplayskip}{0pt} \setlength{\abovedisplayshortskip}{2pt}
+
+\newcommand{\dof}{{\tt DoF}}
+
+\newcommand{\mam}{$\mathcal{G}_{\tt MAM}$}
+\newcommand{\pr}{\ensuremath{\mathbb{P}}}
+
+
+\newcommand{\rad}{\ensuremath{r(n)}}
+\newcommand{\radstar}{\ensuremath{r^*(n)}}
+\newcommand{\radi}{\ensuremath{r_i(n)}}
+\newcommand{\radj}{\ensuremath{r_j(n)}}
+\newcommand{\crossrad}{\ensuremath{r_R(n)}}
+\newcommand{\crossradstar}{\ensuremath{r^*_R(n)}}
+\newcommand{\impcrossrad}{\ensuremath{\hat r_R(n)}}
+\newcommand{\allimpcrossrad}{\ensuremath{\hat r_{R}(n^R)}}
+\newcommand{\ki}{\ensuremath{k_i(n)}}
+\newcommand{\kj}{\ensuremath{k_j(n)}}
+
+%% Manipulation roadmap definition
+\newcommand{\mmgraph}{\ensuremath{\mathbb{G}}}
+\newcommand{\mmgimp}{\hat\mmgraph}
+\newcommand{\mmgexp}{\mmgraph}
+\newcommand{\aograph}{\ensuremath{\mathbb{G}^{AO}}}
+\newcommand{\tree}{\ensuremath{\mathbb{T} \ }}
+\newcommand{\mmnodes}{\mathbb{\hat V}}
+\newcommand{\mmedges}{\mathbb{\hat E}}
+\newcommand{\mmnodestpprm}{\mathbb{V}_{\chi_i}}
+\newcommand{\mmedgestpprm}{\mathbb{E}_{\chi_i}}
+\newcommand{\mmnode}{\mathbb{\hat v}}
+\newcommand{\mmedge}{\mathbb{\hat e}}
+\newcommand{\sprmstar}{Soft-\ensuremath{ {\tt PRM} }}
+\newcommand{\irs}{\ensuremath{ {\tt IRS} }}
+\newcommand{\spars}{{\tt SPARS}}
+\newcommand{\drrt}{\ensuremath{{\tt dRRT}}}
+\newcommand{\drrtstar}{\ensuremath{{\tt dRRT^*}}}
+\newcommand{\dadrrtstar}{\ensuremath{\tt da\_dRRT^*}}
+
+\newcommand{\sig}{{\tt SIG}}
+\newcommand{\rmaps}{\ensuremath{\mathfrak{R}}}
+
+\newcommand{\mmprm}{\ensuremath{\text{Random-}{\tt MMP}}}
+\newcommand{\astar}{{\ensuremath{\tt A^{\text *}}}}
+\newcommand{\mstar}{{\tt M^{\text *}}}
+\newcommand{\opens}{P_{Heap}}
+
+
+\newcommand{\cost}{\textup{cost}}
+
+
+
+%\newcommand*{\qed}{\hfill\ensuremath{\square}}
+
+\newcommand{\kiril}[1]{{\color{blue} \textbf{Kiril:} #1}}
+\newcommand{\chups}[1]{{\color{red} \textbf{Chuples:} #1}}
+\newcommand{\rahul}[1]{{\color{blue} #1}}
+\newcommand{\changkyu}[1]{{\color{red} #1}}
+
+\newcommand{\T}{\mathcal{T}}
+
+% Dual Arm
+\newcommand{\leftrm}{\ensuremath{\mathbb{R}_{l}}  }
+\newcommand{\rightrm}{\ensuremath{\mathbb{R}_{r}}  }
+\newcommand{\leftmetric}{\ensuremath{\mathbb{P}_{l}}  }
+\newcommand{\rightmetric}{\ensuremath{\mathbb{P}_{r}}  }
+\newcommand{\cfull}{\ensuremath{\mathbb{C}_{{\rm full}}}  }
+\newcommand{\cfree}{\ensuremath{\mathbb{C}_{{\rm free}}}  }
+\newcommand{\cobs}{\ensuremath{\mathbb{C}_{{\rm obs}}}  }
+\newcommand{\cleft}{\ensuremath{\mathbb{C}_{{l}}}  }
+\newcommand{\cright}{\ensuremath{\mathbb{C}_{{r}}}  }
+\newcommand{\cshared}{\ensuremath{\mathbb{C}_{{s}}}  }
+\newcommand{\cgoal}{\ensuremath{q_{{\rm goal}}}  }
+\newcommand{\cstart}{\ensuremath{q_{{\rm start}}}  }
+
+\newcommand{\gimpleft}{\ensuremath{\hat\mmgraph_l}}
+\newcommand{\gimpright}{\ensuremath{\hat\mmgraph_r}}
+
+
+\newcommand{\xrand}{\ensuremath{x^{\textup{rand} \ }}}
+\newcommand{\xnear}{\ensuremath{x^{\textup{near} \ }}}
+\newcommand{\xnew}{\ensuremath{x^{\textup{n}} \ }}
+\newcommand{\xlast}{\ensuremath{x^{\textup{last} \ }}}
+\newcommand{\xparent}{\ensuremath{x^{\textup{best} \ }}}
+
+\newcommand{\lr}{\ensuremath{\mathbb{R}_{ls}}}
+\newcommand{\rr}{\ensuremath{\mathbb{R}_{sr}}}
+\newcommand{\lp}{\ensuremath{\mathbb{P}_{l}}}
+\newcommand{\rp}{\ensuremath{\mathbb{P}_{r}}}
+
+\newcommand{\motoman}{{\tt Motoman}}
+\newcommand{\baxter}{{\tt Baxter}}
+\newcommand{\ao}{{\tt AO}}
+
+\newcommand\inlineeqno{\stepcounter{equation}\ (\theequation)}
+
+\newcommand{\chomp}{\ensuremath{\tt CHOMP } }
+
+\newtheorem{assumption}{Assumption}
+
+\newcommand{\W}{\mathcal W}
+\newcommand\perm[2][\^n]{\prescript{#1\mkern-2.5mu}{}P\_{#2}}
+\newcommand\comb[2][\^n]{\prescript{#1\mkern-0.5mu}{}C\_{#2}}
+\newcommand{\objectset}{\mathcal{O}}
+\newcommand{\object}{o}
+\newcommand{\workspace}{\mathcal{W}}
+\newcommand{\taskspace}{\mathcal{T}}
+\newcommand{\arrangement}{A}
+\newcommand{\oar}{p}
+\newcommand{\manipulators}{\mathcal{M}}
+\newcommand{\manipulator}{\mathit{m}}
+\newcommand{\arm}{m}
+\newcommand{\taskset}{\mathcal{T}}
+\newcommand{\task}{\mathit{T}}
+\newcommand{\sol}{\Pi}
+\newcommand{\state}{q}
+
+\newcommand{\Aspace}{\mathcal{A}}
+\newcommand{\Afree}{\mathcal{A}_{\rm val}}
+\newcommand{\ainit}{A_{\rm init}}
+\newcommand{\atarget}{\hat{A}_{\rm goal}}
+\newcommand{\soma}{{\tt soma}}
+\newcommand{\coma}{\ensuremath{{\omega}}}
+\newcommand{\scoma}{\ensuremath{{{\Omega}}}}
+\newcommand{\qset}{\mathcal{Q}}
+\newcommand{\startq}{S}
+\newcommand{\targetq}{T}
+
+\newcommand{\act}{a}
+\newcommand{\actset}{\mathbb{A}}
+\newcommand{\trajset}{{\D}}
+\newcommand{\moveset}{\bar{\mathcal{O}}}
+\newcommand{\home}{Q}
+\newcommand{\scomaset}{\{\scoma\}}
+\newcommand{\tour}{{\Gamma}}
+\newcommand{\tspgraph}{\graph_{\tour}}
+\newcommand{\tspnodes}{\nodes_{\tour}}
+\newcommand{\tspedges}{\edges_{\tour}}
+\newcommand{\algo}{{\tt{TOM}}\xspace}
+\newcommand{\kuka}{{\tt{Kuka }}}
+\newcommand{\D}{D}
+\newcommand{\sininv}{\sin^{-1}}
+\newcommand{\cosinv}{\cos^{-1}}
+\newcommand{\milp}{{\tt{MILP}}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Caption model
+\newcounter{model}
+%\addtocounter{model}{1}
+\newenvironment{model}
+{\refstepcounter{model}}
+{\begin{center}
+\textbf{Model. }~\themodel
+\end{center}
+\medskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\fk}{FK}
+\newcommand{\ik}{IK}
+\newcommand{\graspset}{\mathcal{G}}
+\newcommand{\grasp}{\mathit{g}}
+\newcommand{\vol}{\mathit{vol}}
+\newcommand{\rigid}{\mathcal{R}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binit}{\bin_{init}}
+\newcommand{\btarget}{\bin_{goal}}
+
+\newcommand{\amove}{\mathcal{A}} 
+ \newcommand{\commentadd}[1]{{#1}}
+%\newcommand{\commentdel}[1]{{\color{magenta}}}
+% \newcommand{\commentdel}[1]{{\color{darkgreen} #1}}
+%\newcommand{\commentadd}[1]{{#1}}
+
+% \newcommand{\commentadd}[1]{{#1}}
+\newcommand{\commentdel}[1]{{#1}}
+
+\def\r#1{\textcolor{red}{#1}}

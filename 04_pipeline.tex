@@ -1,0 +1,25 @@
+This section describes critical components that influence the design of the proposed pipeline:
+
+\paragraph{Hardware Setup}
+The robot used in the setup is the $\mathtt{Kuka\ IIWA14}$ $7$-DoF arm (Fig.~\ref{fig:new_setup} middle). A customized end-effector solution extrudes a cylindrical end-effector that ends with a compliant suction cup, to engage vacuum grasps. Two \textit{RealSense} \commentadd{SR300} cameras are mounted on a frame and pointed to containers $\binit$ and $\btarget$ from the other side relative to the robot as Fig.~\ref{fig:new_setup} (right) shows. While far from the robot, the cameras' frame is statically attached to the robot's base such that calibration errors are minimized in estimating the camera poses in the robot's coordinate system. 
+
+% A high-power compressor and valve mechanism is used to generate powerful suction forces at the end-effector.
+
+\paragraph{Workspace Design}
+Fig.~\ref{fig:new_setup} (right) shows the setup designed for the target task. The annular blue region represents the subset of the reachable workspace that allowed for top-down picks with the robot's end-effector. This region is computed by extensively calling an inverse kinematics (IK) solver for top-down picks with the end-effector. The IK solutions indicate that the radial region between $40cm$ and $70cm$ from the robot center maximizes reachability and IK solution success given the setup.  The bins (red rectangles) are placed so that they lie inside the optimal reachable region. 
+
+%This promotes picking strategies that approach the bins from the top.
+
+% \subsection{Pose Estimation}
+% The captured RGB-D data is passed through a convolutional neural network trained to perform object segmentation at the image level. This work has explored problems involving multiple object classes, and multiple instances of the same object, utilizing state-of-the-art solutions, such as {\tt FCN}~\cite{long2015fully} and {\tt MaskRCNN}~\cite{he2017mask}. Out of all the detected segments with a confidence threshold, only one is selected that is heuristically most promising for overhand picks. The heuristic criteria maximize the mean global Z-coordinate of all the RGBD pixels in the segment. Pose estimation~\cite{175}\cite{stocs} is performed over the selected segment (see Fig.~\ref{fig:pipeline}). The estimation returns a registered point set in the observed data, corresponding to the retrieved object model. 
+
+% \subsection{Pick Selection}
+% Using the corresponding set of mesh points, the one with the best pick score is chosen. Scoring calculates the distance to the center of the object mesh. A continuous neighborhood of planar pickable points is required to make proper contact between the suction cup and the object surface. A local search is performed around the best grasp score point, to then maximize the pickable neighborhood.
+
+\paragraph{Software}
+{\tt MoveIt!}~\cite{chitta2012moveit} is used for motion planning. Most of the motions are performed using \textit{Cartesian Control}, which guides the arm using end-effector waypoints. Ensuring the motions occur in reachable parts of the space increases the success of \textit{Cartesian Control}, simplifies motion planning and speeds-up execution. To decrease planning time, motion between the bins is precomputed using the $\mathtt{RRT^*}$ algorithm~\cite{Karaman2011Sampling-based-} and simply replayed at appropriate times. 
+
+% At runtime, the framework computes only actions for moving the end-effector from a predefined pose above each bin either to a picking or a placing configuration. 
+
+% \subsection{Task Planning}
+% The pipeline described in Fig.~\ref{fig:pipeline} shows the sequence of task planning steps undertaken to perform continuous Pick-and-Place. The gray circles represent the control junctures between which motion and sensing is parallelized. Instead of waiting for the sensing and grasp generation, both are invoked asynchronously at the beginning of moving to the source bin. Once the motion ends, the grasping point is available for planning purposes. The pipeline keeps trying to detect new grasps till no further segments can be detected in the scene, which indicates that the source bin is empty.

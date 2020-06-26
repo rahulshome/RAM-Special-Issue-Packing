@@ -1,0 +1,31 @@
+The proposed pipeline, described in Fig.~\ref{fig:pipeline}, provides the steps undertaken to perform the desired packing. The baseline steps correspond to: 
+\begin{myitem}
+\item[a)] {\em (Sensing)}: sense and select a target object $o^i$ to pick up;
+\item[b)] {\em (Picking)}: execute action $\{\tt pick\}$; 
+\item[c)] {\em (Transfer)}: move $o^i$ to the next available target pose $\hat{p}^j$ and execute action $\{\tt release\}$.
+\end{myitem}
+The experimental section considers this baseline pipeline, where it is observed that it performs poorly due to multiple sources of uncertainty, ranging from pose estimation and calibration errors, to object non-uniformity and object interaction with the bin and other objects, among others. These issue necessitate the introduction of remedies, which actively reduce the impact of the uncertainty. To this end, 3 manipulation primitives for a simplistic end-effector are designed to increase robustness and are integrated with the overall architecture: 
+\begin{myitem}
+\item[i)] Toppling;
+\item[ii)] Robust Placement; and 
+\item[iii)] Corrective Packing.
+\end{myitem}
+
+%\subsection{Baseline - Without Pose Estimation}
+%A placement module informs the task planner of the position and orientation of the dropped objects.After an object is picked up, the robot will directly move to the target position and drop the object. 
+
+%\subsection{Packing While Trusting Pose Estimation}
+%For different objects, the transform between the grasped object and the end-effector is different, given the target pose of the object, adjustments of the pose of the grasped object can be done to attempt to align it to the desired drop positions.
+
+\subsection{Baseline: Pose Estimation and Picking}
+\input{05_1_perception_grasping}
+
+\subsection{Toppling}
+\input{05_2_regrasp}
+
+\subsection{Point Cloud Driven Adaptive Pushing}
+\input{05_3_push}
+
+%\subsection{Packing With Use Of Non-Prehensile Push}
+\subsection{Fine Correction using Push and Pull Primitives}
+\input{05_4_alignment}

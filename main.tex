@@ -1,0 +1,105 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
+
+\documentclass[letterpaper, 10 pt, conference]{Format/ieeeconf}  % Comment this line out
+                                                          % if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+                                                          % paper
+
+\IEEEoverridecommandlockouts                              % This command is only
+                                                          % needed if you want to
+                                                          % use the \thanks command
+\overrideIEEEmargins
+
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs}
+\usepackage{graphicx}
+\usepackage{psfrag,graphicx,epsfig,epsf}
+\usepackage[ruled,linesnumbered, noend]{algorithm2e}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{subfigure}
+\usepackage{mathtools}
+\usepackage[permil]{overpic}
+\usepackage{url}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{xspace}
+\usepackage{cite} 
+\usepackage[export]{adjustbox}
+
+\usepackage{multirow}
+
+\usepackage{url}
+\usepackage{breakurl}
+\usepackage[breaklinks]{hyperref}
+\def\UrlBreaks{\do\/\do-}
+
+\title{\LARGE \bf
+%Increasing the Robustness of Packing Cubic Products:\\ Environment-aware Manipulation for a Minimalistic End-effector
+Towards Robust Product Packing with a Minimalistic End-Effector
+%Robust Autonomous Product Packing with a Minimalistic End-Effector  
+}
+
+% \author{TBD$^{1}$}
+
+\author{Rahul Shome*, Wei N. Tang*, Changkyu Song,  Chaitanya Mitash, Hristiyan Kourtev,\\  Jingjin Yu, Abdeslam Boularias, and Kostas E. Bekris% <-this % stops a space
+\thanks{The authors are affiliated with the Computer Science Dept. of, Rutgers University, New Brunswick, NJ, USA. email:\{jingjin.yu,abdeslam.boularias,kostas.bekris\}@cs.rutgers.edu}%
+\thanks{*These authors have equally contributed to the work.}% <-this % stops a space
+\thanks{The authors would like to acknowledge the support of NSF IIS:1617744 and JD-X Research and Development Center (RDC). Any opinions expressed here or findings do not reflect those of the sponsor.}}
+
+
+\begin{document}
+
+
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+\input{notation}
+\vspace*{-4mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{abstract}
+
+Advances in sensor technologies, object detection algorithms, planning frameworks and hardware designs have motivated the deployment of robots in warehouse automation. A variety of such applications, like order fulfillment or packing tasks, require picking objects from unstructured piles and carefully arranging them in bins or containers. Desirable solutions need to be low-cost, easily deployable and controllable, making minimalistic hardware choices desirable. The challenge in designing an effective solution to this problem relates to appropriately integrating multiple components, so as to achieve a robust pipeline that minimizes failure conditions. The current work proposes a complete pipeline for solving such packing tasks, given access only to RGB-D data and a single robot arm with a vacuum-based end-effector, which is also used as a pushing finger. To achieve the desired level of robustness, three key manipulation primitives are identified, which take advantage of the environment and simple operations to successfully pack multiple cubic objects. The overall approach is demonstrated to be robust to execution and perception errors. The impact of each manipulation primitive is evaluated by considering different versions of the proposed pipeline, which incrementally introduce reasoning about object poses and corrective manipulation actions.
+
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+\label{section:introduction}
+\input{01_introduction}
+
+\section{Related Work}
+\label{section:related}
+\input{02_related_work}
+
+\section{Problem Setup and Notation}
+\label{section:problem}
+\input{03_problem}
+
+\section{System Components}
+\label{section:Pipeline}
+\input{04_pipeline}
+
+\section{Proposed Solution}
+\label{section:solution}
+\input{05_0_solution}
+
+\section{Simulation Framework}
+\label{section:simulation}
+\input{05_5_simulation}
+
+\section{Evaluation}
+\label{section:evaluation}
+\input{06_experiments}
+
+\section{Discussion}
+\label{section:discussion}
+\input{07_discussion}
+
+\bibliographystyle{Bibliography/IEEEtran}
+\bibliography{Bibliography/manip}
+
+\end{document}

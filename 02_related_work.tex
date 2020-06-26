@@ -1,0 +1,101 @@
+%This work lies at the intersection of robotic grasping and manipulation, and computer vision. We briefly review the related work in these domains.
+
+\noindent \textbf{Picking Objects in Clutter} Most efforts in robot picking relate to grasping with form- or force-closure using fingered hands ~\cite{Sahbani:2012:OOG:2109688.2109859}. While early works focused on standalone objects~\cite{doi:10.1177/027836499601500302}, recent efforts are oriented toward objects in clutter~\cite{Bohg:2014:DGS:2714095.2714355,Boularias-2014-7951,Boularias:2015:LMU:2887007.2887192}. Either analytical or empirical~\cite{Bohg:2014:DGS:2714095.2714355}, grasping techniques typically identify points on object surfaces and hand configurations that allow grasping. Analytical methods rely on mechanical and geometric object models to identify stable grasps. Empirical techniques rely on examples of successful or failed grasps to train a classifier to predict the success probabilities of grasps on novel objects~\cite{DBLP:journals/corr/abs-1804-05172}. Analytical methods can be applied in many setups but are prone to modeling errors. Empirical methods are model-free and efficient~\cite{mahler2017binpicking} but require a large number of data. The heuristic picking strategy presented here inherits the properties of analytical methods while reducing computational burden. 
+
+%When off-line, 3D CAD models of objects are used to compute a metric that indicate the grasp stability for each point on the surfaces of the objects. Based on point cloud registration, off-line computations are reused online with a minimum computational overhead. A quick local online optimization ensures collision-free pick-ups of objects using our minimalistic end-effector. 
+%In our extensive empirical evaluations, we demonstrate that simple heuristics like the one presented here are sufficient to ensure a nearly perfect success rate for picking cuboid objects from a highly dense pile of objects.
+
+%of dimensions $l\times w\times h$. 
+
+
+% \noindent \textbf{Bin Packing} The 3D bin packing problem, which is NP-hard~\cite{Berkey1987,Martello:2000}, requires objects of different or similar volumes to be packed into a cubical bin. Most strategies search for $\varepsilon$-optimal solutions via greedy algorithms~\cite{Albers:1998:AAF:314613.314718}.  While bin packing is studied extensively, to the best of the authors' knowledge there are few attempts to deploy bin packing solutions on real robots, where inaccuracies in vision and control are taken into account. Such inaccuracies have been considered in the context of efforts relating to the Amazon Robotics Challenge \cite{correll2016analysis}\cite{schwarz2018fast}\cite{morrison2018cartman}\cite{zeng2018robotic}\cite{166}\cite{rennie_dataset} but most of these systems do not deal with bin packing. \rahul{The typical use case targeted during the Amazon Picking Challenge~\cite{correll2016analysis} involved robotic systems~\cite{yu2016summary,schwarz2017nimbro} performing \textit{stowing}, wherein the task is completed as long as all the desired objects are contained inside the target container. Stowing does not require precise placement, or a consideration of occupied volume as long as the objects end up inside the container. Tight packing introduces significant departures from the challenges that arise in stowing tasks. 
+% Recent work~\cite{wang2019stable} has focused on deducing the stable arrangements for target objects that can achieve tight packing. Such methods can be plugged into the proposed pipeline to serve as target arrangements.} 
+
+% Most deployments of automatic packing use mechanical components, such as conveyor trays, that are specifically designed for certain products~\cite{Hayashi2014}, rendering them difficult to customize and deploy.
+% %These systems are typically difficult to customize or to deploy in small factories and workshops.
+% Industrial packing systems also assume that the objects are already mechanically sorted before packing. While this work makes the assumption that the objects have the same dimensions, the setup is more challenging as the objects are randomly thrown in the initial bin. %The objects may also be deformed. 
+% %and slightly different from their CAD models. 
+
+% %A simple greedy algorithm (the first-fit algorithm) takes objects in an arbitrary order and places them in the first region of space they fit in. An improved strategy sorts objects in decreasing volumes before inserting them into the bin
+
+\noindent \textbf{Non-prehensile Manipulation}
+Non-prehensile manipulation, such as pushing, has been shown to help grasping objects in clutter~\cite{Dogar-2011-7322,Dogar22012}. In these works, pushing is used to reduce the uncertainty of a target  object's pose. Through pushing, target objects move into graspable regions. This work follows the same principle and relies on pushing actions to counter the effects of inaccurate localization and point cloud registration. The problem is different because pushing is used for placing instead of grasping objects. The proposed method also uses pushing actions for toppling picked objects to change their orientations as well as to re-arrange misaligned objects. Other efforts have also considered pushing as a primitive in rearrangement tasks~\cite{king2015nonprehensile, cosgun2011push}.  A closely related approach~\cite{chavan2015prehensile} performs within-hand manipulation of a grasped object by pushing it against its environment. The proposed system takes advantage of the compliance properties of the end-effector and leverages collisions with the environment to accurately place objects or topple them. \rahul{Recent developments have showcased renewed interest in exploring the robust generation of such toppling actions~\cite{correa2019robust}, and their modeling with compliant contacts~\cite{cheng2019manipulation}. }
+
+%Physics simulation is performed to evaluate the result of pushing actions in the context of motion planning. 
+
+
+%This is paper focuses more on mechanics of the forceful interaction between a gripper, a grasped object, and its environment and how to take advantage this interaction to achieve in-hand manipulation. 
+
+\noindent \textbf{6D Pose Estimation} Recent efforts in 6D pose estimation use deep learning. In particular, regression over quaternions and centers can predict the rotations and centers of objects in images~\cite{xiang2017posecnn}. An alternative first predicts 3D object coordinates, followed by a RANSAC scheme to predict the object's pose~\cite{brachmann2014learning}. Similarly, geometric consistency has been used to refine the predictions from learned models~\cite{michel2017global}. Other approaches use object segmentation to guide a global search process for estimating 6D poses~\cite{mitash2018robust, narayanan2016discriminatively, mitash2017improving}. This work is based on the authors' prior effort~\cite{mitash2018robust}, where uncertainty over pixel labels returned by a convolutional neural network is taken into account when registering 3D models into the point cloud. The approach used here is different from the previous work as it can handle multiple instances of the same category of objects.
+\rahul{More recent work, motivated by the application of bin-packing, argued that typical scenes in automation scenarios often exhibit regular arrangements of similar objects that are closely situated in a container. Specialized pose estimation techniques~\cite{mitash2019scene} address such multi-instance scene-level pose estimation.}
+
+% companies
+% Taxonomy or image
+
+% Split into bin-packing as the first half
+% Other related areas
+% Reference tree of Mason's and Hauser's work
+
+
+% \subsection{Packing for Automation}
+
+
+\noindent \textbf{Bin Packing:} 
+The 3D bin packing problem, which is NP-hard~\cite{Berkey1987,Martello:2000}, requires objects of different or similar volumes to be packed into a cubical bin. Most strategies search for $\varepsilon$-optimal solutions via greedy algorithms~\cite{Albers:1998:AAF:314613.314718}.  While bin packing is studied extensively, to the best of the authors' knowledge there are few attempts to deploy bin packing solutions on real robots, where inaccuracies in vision and control are taken into account. Such inaccuracies have been considered in the context of efforts relating to the Amazon Robotics Challenge \cite{correll2016analysis}\cite{schwarz2018fast}\cite{morrison2018cartman}\cite{zeng2018robotic}\cite{166}\cite{rennie_dataset} but most of these systems do not deal with bin packing. \rahul{The typical use case targeted during the Amazon Picking Challenge~\cite{correll2016analysis} involved robotic systems~\cite{yu2016summary,schwarz2017nimbro} performing \textit{stowing}, wherein the task is completed as long as all the desired objects are contained inside the target container. Stowing does not require precise placement, or a consideration of occupied volume as long as the objects end up inside the container. Tight packing introduces significant departures from the challenges that arise in stowing tasks. 
+Recent work~\cite{wang2019stable} has focused on computing incremental stable arrangements for target objects that can achieve packing inside a container. Such methods can be plugged into the proposed pipeline to serve as target arrangements.} 
+
+% Most deployments of automatic packing use mechanical components, such as conveyor trays, that are specifically designed for certain products,
+% % ~\cite{Hayashi2014}
+% rendering them difficult to customize and deploy.
+% %These systems are typically difficult to customize or to deploy in small factories and workshops.
+% Industrial packing systems also assume that the objects are already mechanically sorted before packing. While this work makes the assumption that the objects have the same dimensions, the setup is more challenging as the objects are randomly thrown in the initial bin. %The objects may also be deformed. 
+% %and slightly different from their CAD models. 
+
+%A simple greedy algorithm (the first-fit algorithm) takes objects in an arbitrary order and places them in the first region of space they fit in. An improved strategy sorts objects in decreasing volumes before inserting them into the bin
+
+\rahul{
+\noindent\textbf{Industrial Deployments:}
+Variations of the bin packing problem have existed in industrial warehouse automation setups. There are several industrial solutions\footnote{\url{https://robotpacking.org/industrial_automation.html}}
+% ~\cite{Exclusiv46:online,PickingP56:online,PickPlac39:online,VacuumGr56:online,HandleB4:online,Robotsfo58:online} 
+that offer in-house streamlining of their own order-fulfilment workflow
+% ~\cite{Exclusiv46:online}
+or warehouse automation services for other industrial partners. In order to maintain practical performance careful design and simplifying structure is imposed
+% on the general tight bin-packing problem to make solutions amenable to specific industrial applications
+which is often unique to the specific product. 
+% The chief choices here are the assumptions about how the products arrive to the robot (structured or unstructured), the heterogeneity of the products, way in which the packaging is designed, the positioning and dimensions of the packaging, and the choice of the tightness of packing.
+
+Based on the design choices the variations of the packing problem that have been addressed in industrial settings can be broadly classified into certain categories.
+% \begin{itemize}
+    % \item[-] 
+    
+    \textit{Stowing}
+    % ~\cite{PickingP56:online,VacuumGr56:online}
+    : Certain application domains can relax the tightness of the packing operation and it is sufficient to \textit{stow} or place the products into the packaging (cartons, boxes, or crates) that is large enough such that all the objects can be fully contained inside the package with sufficient empty space between them, requiring less deliberate placement.
+    % \item[-] 
+    
+    \textit{Tight Packing}
+    % ~\cite{PickPlac39:online}
+    : For applying tight packing, the workspaces are strictly controlled by enforcing precise positioning of the objects, as well as the containers. Repeatable, mostly deterministic actions can achieve tight packing into singulated containers, or cartons when the structure is imposed by  conveying mechanism in the warehouse. 
+    % \item[-] 
+    
+    \textit{Aggregation}
+    % ~\cite{PickPlac39:online,HandleB4:online}
+    : Singulated, identical batches of products can also be aggregated at an intermediate step to manipulate them en-masse. This applies to applications of \textit{depanning, denesting, and palletizing}, based on what part of the workflow is aggregated. In depanning setups precisely positioned groups of products are picked up and moved together. Denesting applies to containers and allows them to be moved together before placement of products into them. Both of these problems require structure imposed on the influx of products or packaging. Intermediate containers are also sometimes introduced to impose precise funneling of heterogeneous products (like food items etc) before aggregation. Palletizing
+    % ~\cite{HandleB4:online}
+    applies to aggregation of packed containers for movement across the warehouse, and for shipment. Palletizing can expose a version of the packing problem itself where the containers themselves are being packed into pallets. The incoming boxes can be strictly controlled in terms of their initial positions, and object features.
+    % \item[-] 
+    
+    \textit{Specialized Packaging Mechanisms}
+    % ~\cite{Exclusiv46:online,fallas2015case}
+    : Another workaround that is used in industrial settings to achieve robust packing into containers is to concurrently design a packaging that works in associated mechanisms that can build or place the container around and over the incoming products. The trade-off here is that in \textit{stowing}
+    % ~\cite{Exclusiv46:online}
+    scenarios most of the onus falls on conveying systems that need to aggregate groups of products together that need to be packed at a time, whereas in \textit{tight-packing} problems
+    % ~\cite{fallas2015case}
+    , the products need to arrive with neatly structured incoming positioning.
+% \end{itemize}
+
+The key focus of the current work is to narrow down the design considerations for a packing pipeline with a minimalistic end-effector, using an identical setup for different products, applicable to unstructured incoming piles of objects to be placed in arbitrarily sized boxes. 
+
+% Strategies outlined in non-prehensile manipulation approaches can be incorporated into the current pipeline as the reorientation or toppling strategy.
+% The power of the proposed pipeline lies in a set of such {maneuvers} composed together for robust execution. The efficacy of the design principles of the pipeline is the highlight of the current work, where each primitive or maneuver composing the pipeline can be optimized appropriately for specific application domains.
+}
